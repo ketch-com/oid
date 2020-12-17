@@ -1,0 +1,11 @@
+name: oid
+description: Ketch Object ID
+repository: https://github.com/ketch-com/oid
+release:
+  branches:
+    only: main
+environment:
+  GO111MODULE: on
+  CGO_ENABLED: "0"
+  GOOS: linux
+  GOPRIVATE: "go.ketch.com"
