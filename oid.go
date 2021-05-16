@@ -3,6 +3,7 @@ package oid
 import (
 	"crypto/rand"
 	"encoding/binary"
+	"io"
 	"math/big"
 	"strings"
 	"time"
@@ -28,6 +29,27 @@ func NewOID() (string, error) {
 	}
 
 	n = big.NewInt(0)
+	n.SetBytes(data)
+
+	buf := new(strings.Builder)
+	m := big.NewInt(0)
+
+	for n.Cmp(zero) != 0 {
+		n.DivMod(n, base, m)
+		z := m.Int64()
+		buf.WriteString(alphabet[z:z+1])
+	}
+
+	return reverse(buf.String()), nil
+}
+
+func NewRandom(size int) (string, error) {
+	data := make([]byte, size)
+	if _, err := io.ReadFull(rand.Reader, data); err != nil {
+		return "", err
+	}
+
+	n := big.NewInt(0)
 	n.SetBytes(data)
 
 	buf := new(strings.Builder)
