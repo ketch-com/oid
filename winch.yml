@@ -9,3 +9,4 @@ environment:
   CGO_ENABLED: "0"
   GOOS: linux
   GOPRIVATE: "go.ketch.com"
+  GOFLAGS: "-buildvcs=false"
