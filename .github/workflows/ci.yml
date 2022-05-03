@@ -18,6 +18,6 @@ jobs:
     - uses: actions/cache@v3.0.2
       with:
         path: /home/runner/go
-        key: v1-go-mod-${{ hashFiles('go.sum') }}
-        restore-keys: v1-go-mod-
+        key: v2-go-mod-${{ hashFiles('go.sum') }}
+        restore-keys: v2-go-mod-
     - uses: winchci/actions-golang@v1
